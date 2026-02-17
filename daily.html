@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Devotion - Devotional App</title>
+ <link href="./src/styles/input.css" rel="stylesheet" />
+<!-- PWA Manifest -->
+ <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#9333ea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Devotional">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white font-sans">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-gray-900/60 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold text-yellow-300">Daily Devotion</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="text-gray-300 hover:text-yellow-300 transition">← Back Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="pt-24 pb-12 px-4">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- TODAY'S DATE -->
+      <div class="text-center mb-8 animate-fadeIn">
+        <h2 class="text-3xl md:text-4xl font-bold text-yellow-400 mb-2">Today's Devotion</h2>
+        <p id="currentDate" class="text-gray-300 text-lg"></p>
+      </div>
+
+      <!-- DAILY VERSE HIGHLIGHT -->
+      <section class="mb-10 animate-fadeIn">
+        <div class="bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-purple-700">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="text-4xl">📖</div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-yellow-300 mb-3">Scripture of the Day</h3>
+              <p id="dailyVerseText" class="text-xl italic text-gray-100 mb-3 leading-relaxed"></p>
+              <p id="dailyVerseRef" class="text-yellow-200 font-medium"></p>
+            </div>
+          </div>
+          <button id="refreshVerse" class="mt-4 bg-yellow-400 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-500 transition font-semibold">
+            🔄 New Verse
+          </button>
+        </div>
+      </section>
+
+      <!-- DEVOTIONAL MESSAGE -->
+      <section class="mb-10 animate-fadeIn">
+        <div class="bg-gray-800/70 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-700">
+          <h3 class="text-2xl font-semibold text-yellow-300 mb-4 flex items-center gap-2">
+            <span>✍️</span> Today's Message
+          </h3>
+          <div id="devotionalMessage" class="text-gray-200 leading-relaxed space-y-4">
+            <p>
+              Good morning! As we gather today, let us remember that each day is a gift from God. 
+              No matter what challenges we face, His grace is sufficient for us.
+            </p>
+            <p>
+              The verse today reminds us of God's unchanging love and faithfulness. In times of 
+              uncertainty, we can anchor our hope in His promises. He has never failed us, and He 
+              never will.
+            </p>
+            <p>
+              Let us approach this day with gratitude, knowing that the Lord goes before us. 
+              Take time to pray, to worship, and to encourage one another in faith.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRAYER POINTS -->
+      <section class="mb-10 animate-fadeIn">
+        <div class="bg-gray-800/70 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-700">
+          <h3 class="text-2xl font-semibold text-yellow-300 mb-4 flex items-center gap-2">
+            <span>🙏</span> Prayer Points
+          </h3>
+          <ul class="space-y-3 text-gray-200">
+            <li class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">•</span>
+              <span>Thank God for His faithfulness and provision</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">•</span>
+              <span>Pray for wisdom and guidance throughout the day</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">•</span>
+              <span>Intercede for family, friends, and community needs</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">•</span>
+              <span>Ask for protection and peace over everyone present</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-yellow-400 text-xl">•</span>
+              <span>Pray for unity and love within our fellowship</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TODAY'S SCHEDULE -->
+      <section class="mb-10 animate-fadeIn">
+        <div class="bg-gray-800/70 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-700">
+          <h3 class="text-2xl font-semibold text-yellow-300 mb-4 flex items-center gap-2">
+            <span>📅</span> Today's Schedule
+          </h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-gray-900/50 p-4 rounded-lg">
+              <p class="text-gray-400 text-sm mb-1">Preacher</p>
+              <p id="todayPreacher" class="text-yellow-200 text-lg font-semibold">—</p>
+            </div>
+            <div class="bg-gray-900/50 p-4 rounded-lg">
+              <p class="text-gray-400 text-sm mb-1">Praise & Worship</p>
+              <p id="todayPraise" class="text-yellow-200 text-lg font-semibold">—</p>
+            </div>
+            <div class="bg-gray-900/50 p-4 rounded-lg">
+              <p class="text-gray-400 text-sm mb-1">Prayer Leader</p>
+              <p id="todayPrayer" class="text-yellow-200 text-lg font-semibold">—</p>
+            </div>
+            <div class="bg-gray-900/50 p-4 rounded-lg">
+              <p class="text-gray-400 text-sm mb-1">Service Coordinator</p>
+              <p id="todayCoordinator" class="text-yellow-200 text-lg font-semibold">—</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <a href="index.html#schedule" class="text-yellow-300 hover:text-yellow-400 underline">
+              View Full Schedule →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORSHIP SONGS SUGGESTION -->
+      <section class="mb-10 animate-fadeIn">
+        <div class="bg-gray-800/70 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-gray-700">
+          <h3 class="text-2xl font-semibold text-yellow-300 mb-4 flex items-center gap-2">
+            <span>🎵</span> Suggested Worship Songs
+          </h3>
+          <ul class="space-y-2 text-gray-200">
+            <li class="flex items-center gap-3">
+              <span class="text-yellow-400">♫</span>
+              <span>How Great Is Our God</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-yellow-400">♫</span>
+              <span>Goodness of God</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-yellow-400">♫</span>
+              <span>Way Maker</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="text-yellow-400">♫</span>
+              <span>What a Beautiful Name</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- REFLECTION SECTION -->
+      <section class="animate-fadeIn">
+        <div class="bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-blue-700">
+          <h3 class="text-2xl font-semibold text-yellow-300 mb-4 flex items-center gap-2">
+            <span>💭</span> Reflection & Action
+          </h3>
+          <div class="text-gray-200 space-y-4">
+            <p class="font-medium">Questions to Consider:</p>
+            <ul class="space-y-2 ml-4">
+              <li>• How can I apply today's scripture to my life?</li>
+              <li>• What is God speaking to me through this message?</li>
+              <li>• Who can I encourage or bless today?</li>
+            </ul>
+            <p class="mt-4 text-yellow-200 italic">
+              "Let the word of Christ dwell in you richly..." - Colossians 3:16
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-sm text-gray-400">
+    © 2025 Devotional App – created by Samuel
+  </footer>
+
+  <!-- SCRIPT -->
+ <script type="module" src="./src/daily.js"></script>
+</body>
+</html>
