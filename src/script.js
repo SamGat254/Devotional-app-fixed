@@ -169,7 +169,7 @@ function generateSchedule() {
   
   alert('Saturday schedule generated successfully!');
 }
-}
+
 
 function displaySchedule(schedule) {
   const preacherEl = document.getElementById('schedPreacher');
