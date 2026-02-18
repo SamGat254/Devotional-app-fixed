@@ -23,8 +23,8 @@ const bibleVerses = [
 
 // ========== TEAM MEMBERS ==========
 const teamMembers = {
-  all: ["Samuel", "Hellen", "Brian", "Emmanuela", "Edith", "Ibrahim", "Abigael", "Mama Dan"],
-  ladies: ["Hellen", "Emmanuela", "Edith", "Abigael", "Mama Dan"]
+  all: ["Samuel", "Hellen", "Brian", "Emmanuela", "Edith", "Ibrahim", "Abigael", "Mama Dan", "Derrick", "Peter", "Paul", "Josphine"],
+  ladies: ["Hellen", "Emmanuela", "Edith", "Abigael", "Mama Dan", "Josphine"]
 };
 
 // ========== PRAYER ITEMS ==========
