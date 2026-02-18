@@ -15,24 +15,22 @@
   <meta name="apple-mobile-web-app-title" content="Devotional">
   <link rel="apple-touch-icon" href="/icon-192.png">
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white font-sans">
+<body class="min-h-screen bg-gray-50 text-gray-900 font-sans">
 
   <!-- NAVBAR (fixed) -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-gray-900/60 backdrop-blur-md border-b border-gray-800">
+ <nav class="fixed top-0 left-0 w-full z-50 bg-white shadow-md border-b border-gray-200">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
       <div class="flex items-center gap-3">
-        <h1 class="text-xl font-bold text-yellow-300">Devotional App</h1>
-        <span id="datetimeSmall" class="text-sm text-gray-300 hidden md:inline"></span>
+       <h1 class="text-xl font-bold text-blue-600">Devotional App</h1>
+        <span id="datetimeSmall" class="text-sm text-gray-600 hidden md:inline"></span>
       </div>
 
-     <div class="flex items-center gap-2 md:gap-3">
-  <a href="#home" class="text-gray-300 hover:text-yellow-300 transition text-sm md:text-base">Home</a>
-  <a href="#daily-verse" class="text-gray-300 hover:text-yellow-300 transition text-sm md:text-base">Verse</a>
-  <a href="#schedule" class="text-gray-300 hover:text-yellow-300 transition text-sm md:text-base hidden sm:inline">Schedule</a>
-  <a href="#assignments" class="text-gray-300 hover:text-yellow-300 transition text-sm md:text-base hidden sm:inline">Assignments</a>
-  <button id="themeToggle" class="bg-yellow-300 text-gray-900 px-2 py-1 text-sm md:px-3 md:text-base rounded">Theme</button>
+    <div class="flex items-center gap-2 flex-wrap justify-end">
+ <a href="#home" class="text-gray-700 hover:text-blue-600 transition text-sm">Home</a>
+<a href="#daily-verse" class="text-gray-700 hover:text-blue-600 transition text-sm">Verse</a>
+<a href="#schedule" class="text-gray-700 hover:text-blue-600 transition text-sm">Schedule</a>
+  <button id="themeToggle" class="bg-blue-600 text-white px-3 py-1.5 text-sm rounded font-semibold hover:bg-blue-700">Theme</button>
 </div>
-    </div>
   </nav>
 
   <!-- MAIN (gives top space for fixed nav) -->
@@ -40,11 +38,11 @@
 
     <!-- HERO / WELCOME -->
     <section id="home" class="max-w-6xl mx-auto px-4 py-12 text-center animate-fadeIn">
-      <h2 class="text-4xl md:text-5xl font-extrabold text-yellow-400 mb-3">Welcome to Our Devotion 🌅</h2>
-      <p class="text-gray-300 max-w-2xl mx-auto mb-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-blue-700 mb-3">Welcome to Our Devotion 🙏</h2>
+<p class="text-gray-700 max-w-2xl mx-auto mb-6">
   Join us every Saturday evening for prayer, worship, and scripture — automatic scheduling, daily verses, and simple tools to run your fellowship.
 </p>
-      <a href="daily.html" class="inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition">Get Started</a>
+     <a href="daily.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md">Get Started</a>
     </section>
 
     <!-- LIVE DATE & TIME -->
