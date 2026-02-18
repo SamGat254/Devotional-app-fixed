@@ -125,19 +125,24 @@ function initializeSchedule() {
     downloadPdfBtn.addEventListener('click', downloadSchedulePDF);
   }
 }
-
 function generateSchedule() {
   // Shuffle team members
   const shuffled = [...teamMembers.all].sort(() => Math.random() - 0.5);
   const shuffledLadies = [...teamMembers.ladies].sort(() => Math.random() - 0.5);
   
-  // Assign roles
+  // Assign roles ensuring no duplicates
   const preacher = shuffled[0];
-  const praiseSinger = shuffledLadies[0];
-  const worshipSinger = shuffledLadies[1] !== praiseSinger ? shuffledLadies[1] : shuffledLadies[2];
+  
+  // Get praise singer (must be lady, not preacher)
+  const praiseSinger = shuffledLadies.find(lady => lady !== preacher);
+  
+  // Get worship singer (must be lady, not preacher, not praise singer)
+  const worshipSinger = shuffledLadies.find(lady => lady !== preacher && lady !== praiseSinger);
+  
+  // Get coordinator (not preacher, not singers)
   const coordinator = shuffled.find(m => m !== preacher && m !== praiseSinger && m !== worshipSinger);
   
-  // Remaining people for prayer items
+  // Remaining people for prayer items (exclude all assigned roles)
   const usedMembers = [preacher, praiseSinger, worshipSinger, coordinator];
   const prayerAssignees = shuffled.filter(m => !usedMembers.includes(m));
   
@@ -163,6 +168,7 @@ function generateSchedule() {
   localStorage.setItem('devotionalSchedule', JSON.stringify(todaySchedule));
   
   alert('Saturday schedule generated successfully!');
+}
 }
 
 function displaySchedule(schedule) {

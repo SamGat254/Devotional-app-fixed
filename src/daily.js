@@ -1,92 +1,74 @@
 // ==========================================
-// DAILY DEVOTION PAGE SCRIPT
+// DAILY DEVOTION PAGE SCRIPT - ENHANCED
 // ==========================================
 
-const bibleVerses = [
-  { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", ref: "John 3:16" },
-  { text: "I can do all things through Christ who strengthens me.", ref: "Philippians 4:13" },
-  { text: "Trust in the LORD with all your heart and lean not on your own understanding.", ref: "Proverbs 3:5" },
-  { text: "The LORD is my shepherd, I lack nothing.", ref: "Psalm 23:1" },
-  { text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go.", ref: "Joshua 1:9" },
-  { text: "And we know that in all things God works for the good of those who love him.", ref: "Romans 8:28" },
-  { text: "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "Jeremiah 29:11" },
-  { text: "The LORD will fight for you; you need only to be still.", ref: "Exodus 14:14" },
-  { text: "Come to me, all you who are weary and burdened, and I will give you rest.", ref: "Matthew 11:28" },
-  { text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.", ref: "Philippians 4:6" },
-  { text: "The LORD bless you and keep you; the LORD make his face shine on you and be gracious to you.", ref: "Numbers 6:24-25" },
-  { text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.", ref: "John 14:27" },
-  { text: "But those who hope in the LORD will renew their strength. They will soar on wings like eagles.", ref: "Isaiah 40:31" },
-  { text: "The name of the LORD is a fortified tower; the righteous run to it and are safe.", ref: "Proverbs 18:10" },
-  { text: "Cast all your anxiety on him because he cares for you.", ref: "1 Peter 5:7" },
-  { text: "This is the day that the LORD has made; let us rejoice and be glad in it.", ref: "Psalm 118:24" },
-  { text: "The joy of the LORD is your strength.", ref: "Nehemiah 8:10" },
-  { text: "Be still, and know that I am God.", ref: "Psalm 46:10" },
-  { text: "God is our refuge and strength, an ever-present help in trouble.", ref: "Psalm 46:1" }
-];
-
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  initializePage();
-});
-
-function initializePage() {
-  // Display current date
-  displayCurrentDate();
-  
-  // Display daily verse
-  displayDailyVerse();
-  
-  // Load today's schedule
-  loadTodaySchedule();
-  
-  // Refresh verse button
-  const refreshBtn = document.getElementById('refreshVerse');
-  if (refreshBtn) {
-    refreshBtn.addEventListener('click', displayDailyVerse);
-  }
-}
-
-function displayCurrentDate() {
-  const dateElement = document.getElementById('currentDate');
-  if (dateElement) {
-    const options = { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
-    const today = new Date().toLocaleDateString('en-US', options);
-    dateElement.textContent = today;
-  }
-}
-
-function displayDailyVerse() {
-  const verse = bibleVerses[Math.floor(Math.random() * bibleVerses.length)];
-  
-  const verseText = document.getElementById('dailyVerseText');
-  const verseRef = document.getElementById('dailyVerseRef');
-  
-  if (verseText && verseRef) {
-    verseText.textContent = `"${verse.text}"`;
-    verseRef.textContent = verse.ref;
-  }
-}
-
-function loadTodaySchedule() {
-  // Try to load schedule from localStorage (saved from main page)
-  const savedSchedule = localStorage.getItem('devotionalSchedule');
-  
-  if (savedSchedule) {
-    const schedule = JSON.parse(savedSchedule);
-    
-    const preacherEl = document.getElementById('todayPreacher');
-    const praiseEl = document.getElementById('todayPraise');
-    const prayerEl = document.getElementById('todayPrayer');
-    const coordinatorEl = document.getElementById('todayCoordinator');
-    
-    if (preacherEl) preacherEl.textContent = schedule.preacher || '—';
-    if (praiseEl) praiseEl.textContent = schedule.praise || '—';
-    if (prayerEl) prayerEl.textContent = schedule.prayer || '—';
-    if (coordinatorEl) coordinatorEl.textContent = schedule.coordinator || '—';
-  }
-}
+const devotionalContent = [
+  {
+    verse: { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", ref: "John 3:16" },
+    message: "God's love is the foundation of our faith. This verse reminds us that salvation is a gift, freely given out of divine love. No matter what we've done, God's love reaches us where we are. Today, reflect on the depth of God's sacrificial love and how it transforms our lives daily.",
+    prayerPoints: [
+      "Thank God for His unconditional love and the gift of salvation",
+      "Pray for hearts to receive and understand God's love",
+      "Ask God to help you share His love with others today",
+      "Intercede for those who don't yet know God's saving grace"
+    ],
+    reflection: "How can you demonstrate God's love to someone today? Consider one practical way to show sacrificial love to another person this week."
+  },
+  {
+    verse: { text: "I can do all things through Christ who strengthens me.", ref: "Philippians 4:13" },
+    message: "Paul wrote these words not from a place of comfort, but from prison. This verse isn't about worldly success—it's about finding strength in Christ through every circumstance. Whether in abundance or need, Christ provides the strength we need. Today, remember that your strength comes from Him, not from yourself.",
+    prayerPoints: [
+      "Thank God for His strength in your weakness",
+      "Pray for endurance in current challenges you're facing",
+      "Ask for faith to trust God's strength over your own abilities",
+      "Pray for others who feel weak or discouraged today"
+    ],
+    reflection: "What challenge are you facing that requires Christ's strength? Surrender it to Him today and trust in His power, not your own."
+  },
+  {
+    verse: { text: "Trust in the LORD with all your heart and lean not on your own understanding.", ref: "Proverbs 3:5" },
+    message: "True wisdom begins with trust in God. Our human understanding is limited, but God sees the complete picture. When life doesn't make sense, this verse calls us to deeper trust. Surrendering our need to understand everything is an act of faith that brings peace beyond comprehension.",
+    prayerPoints: [
+      "Thank God for His perfect wisdom and understanding",
+      "Pray for grace to trust God when you don't understand",
+      "Ask God to reveal areas where you're relying on your own understanding",
+      "Intercede for those struggling to trust God's plan"
+    ],
+    reflection: "What situation in your life requires you to trust God beyond your understanding? Choose today to surrender your need for answers and rest in His wisdom."
+  },
+  {
+    verse: { text: "The LORD is my shepherd, I lack nothing.", ref: "Psalm 23:1" },
+    message: "David, a shepherd himself, understood what it meant to be under God's care. A good shepherd provides, protects, guides, and knows each sheep by name. This verse is a declaration of trust and contentment—when God is our shepherd, we have everything we truly need. Not everything we want, but everything we need.",
+    prayerPoints: [
+      "Thank God for His provision and care over your life",
+      "Pray for contentment in what God has provided",
+      "Ask God to help you recognize His guidance in your daily life",
+      "Intercede for those who feel they lack essential needs"
+    ],
+    reflection: "In what areas of life do you struggle with contentment? How can you shift your focus from what you lack to what God has provided?"
+  },
+  {
+    verse: { text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go.", ref: "Joshua 1:9" },
+    message: "God spoke these words to Joshua as he prepared to lead Israel into the Promised Land—a daunting task after Moses' death. Notice that courage isn't the absence of fear; it's moving forward despite fear because of God's presence. God's promise of presence is the foundation of our courage. He goes before us, beside us, and behind us.",
+    prayerPoints: [
+      "Thank God for His constant presence in your life",
+      "Pray for courage to face what lies ahead",
+      "Ask God to remove fear and discouragement from your heart",
+      "Pray for boldness to step into what God is calling you to do"
+    ],
+    reflection: "What step of faith has fear been preventing you from taking? Remember God's promise of presence and take one courageous step today."
+  },
+  {
+    verse: { text: "And we know that in all things God works for the good of those who love him.", ref: "Romans 8:28" },
+    message: "This doesn't mean everything that happens is good—pain, loss, and suffering are real. But God is able to work even through difficult circumstances to bring about good. Joseph told his brothers who sold him into slavery: 'You intended to harm me, but God intended it for good.' Trust that God is working, even when you can't see it.",
+    prayerPoints: [
+      "Thank God for His sovereignty over all circumstances",
+      "Pray for eyes to see how God is working in difficult situations",
+      "Ask for patience to wait for God's good purposes to unfold",
+      "Intercede for those in painful circumstances right now"
+    ],
+    reflection: "Looking back, how has God worked good from past difficult circumstances? Trust Him to do the same in present challenges."
+  },
+  {
+    verse: { text: "Cast all your anxiety on him because he cares for you.", ref: "1 Peter 5:7" },
+    message: "The word 'cast' implies a deliberate action—throwing, releasing, letting go. God doesn't just tolerate our anxieties; He invites us to give
