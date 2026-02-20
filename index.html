@@ -307,6 +307,88 @@
 
   <div id="toast"></div>
 
+  <!-- Inline menu handler to ensure it works before module loads -->
+  <script>
+    // ===== HAMBURGER MENU (inline so it always works) =====
+    document.addEventListener('DOMContentLoaded', function() {
+      var menuBtn = document.getElementById('menuBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var overlay = document.getElementById('menuOverlay');
+
+      function openMenu() {
+        if(mobileMenu) mobileMenu.classList.add('open');
+        if(overlay) overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        if(mobileMenu) mobileMenu.classList.remove('open');
+        if(overlay) overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      window.closeMenu = closeMenu;
+
+      if(menuBtn) menuBtn.addEventListener('click', openMenu);
+      if(overlay) overlay.addEventListener('click', closeMenu);
+
+      document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      var mobileTheme = document.getElementById('themeToggleMobile');
+      if(mobileTheme) mobileTheme.addEventListener('click', closeMenu);
+
+      document.addEventListener('keydown', function(e) {
+        if(e.key === 'Escape') closeMenu();
+      });
+    });
+
+    // ===== SONG FILTER (inline so onclick works) =====
+    function filterSongs(type, btn) {
+      document.querySelectorAll('.songs-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.song-item').forEach(function(el) {
+        el.style.display = (type === 'all' || el.dataset.type === type) ? '' : 'none';
+      });
+    }
+
+    // ===== SONG MODAL (inline so onclick works) =====
+    function openSongModal(idx) {
+      var songs = window._songs;
+      if(!songs || !songs[idx]) return;
+      var s = songs[idx];
+      var modal = document.getElementById('songModal');
+      document.getElementById('modalSongTitle').textContent = s.title;
+      document.getElementById('modalSongArtist').textContent = s.artist + ' · ' + s.language;
+      document.getElementById('modalSongLyrics').textContent = s.lyrics;
+      var te = document.getElementById('modalSongType');
+      te.textContent = s.type === 'praise' ? '🎵 Praise Song' : '🙏 Worship Song';
+      te.style.cssText = s.type==='praise'
+        ? 'background:rgba(245,200,66,.12);color:var(--accent);border:1px solid rgba(245,200,66,.25);padding:.2rem .65rem;border-radius:20px;font-size:.78rem;display:inline-block;'
+        : 'background:rgba(124,106,247,.12);color:#a78bfa;border:1px solid rgba(124,106,247,.25);padding:.2rem .65rem;border-radius:20px;font-size:.78rem;display:inline-block;';
+      if(modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    }
+    function closeSongModal() {
+      var modal = document.getElementById('songModal');
+      if(modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+    }
+
+    // ===== DELETE FUNCTIONS =====
+    function deleteAssignment(id) {
+      var l = JSON.parse(localStorage.getItem('assignments')||'[]').filter(function(a){return a.id!==id;});
+      localStorage.setItem('assignments', JSON.stringify(l));
+      location.reload();
+    }
+    function deleteDevotional(id) {
+      var l = JSON.parse(localStorage.getItem('devotionals')||'[]').filter(function(d){return d.id!==id;});
+      localStorage.setItem('devotionals', JSON.stringify(l));
+      location.reload();
+    }
+    function downloadDevotionalPDF(id) {
+      // handled by module script
+      if(window._downloadDevotionalPDF) window._downloadDevotionalPDF(id);
+    }
+  </script>
+
   <script type="module" src="./src/script.js"></script>
 </body>
 </html>
