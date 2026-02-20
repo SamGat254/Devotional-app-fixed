@@ -13,156 +13,156 @@
   <link rel="apple-touch-icon" href="/icon-192.png">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0d0d1a;
-      --bg2: #12122a;
-      --card: rgba(255,255,255,0.04);
-      --card-border: rgba(255,255,255,0.08);
-      --text: #e8e8f0;
-      --text-muted: #8888aa;
-      --accent: #f5c842;
-      --accent2: #7c6af7;
-      --green: #34d399;
-      --red: #f87171;
-      --nav-bg: rgba(13,13,26,0.95);
-    }
-    html.light-mode {
-      --bg: #f0f0f8;
-      --bg2: #e4e4f0;
-      --card: rgba(255,255,255,0.85);
-      --card-border: rgba(100,100,180,0.18);
-      --text: #1a1a3a;
-      --text-muted: #666688;
-      --accent: #b8860b;
-      --accent2: #5046e5;
-      --green: #059669;
-      --red: #dc2626;
-      --nav-bg: rgba(240,240,248,0.97);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Lato', sans-serif;
-      min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
-    }
-    h1,h2,h3,h4 { font-family: 'Cinzel', serif; }
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background: radial-gradient(ellipse at 15% 50%, rgba(124,106,247,0.07) 0%, transparent 55%),
-                  radial-gradient(ellipse at 85% 15%, rgba(245,200,66,0.05) 0%, transparent 50%);
-      pointer-events: none; z-index: 0;
-    }
-    html.light-mode body::before { display: none; }
+    :root{--bg:#0d0d1a;--bg2:#12122a;--card:rgba(255,255,255,.04);--card-border:rgba(255,255,255,.08);--text:#e8e8f0;--text-muted:#8888aa;--accent:#f5c842;--accent2:#7c6af7;--green:#34d399;--red:#f87171;--nav-bg:rgba(13,13,26,.95);}
+    html.light-mode{--bg:#f0f0f8;--bg2:#e4e4f0;--card:rgba(255,255,255,.85);--card-border:rgba(100,100,180,.18);--text:#1a1a3a;--text-muted:#666688;--accent:#b8860b;--accent2:#5046e5;--green:#059669;--red:#dc2626;--nav-bg:rgba(240,240,248,.97);}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;min-height:100vh;transition:background .3s,color .3s;}
+    h1,h2,h3,h4{font-family:'Cinzel',serif;}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 50%,rgba(124,106,247,.07) 0%,transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(245,200,66,.05) 0%,transparent 50%);pointer-events:none;z-index:0;}
+    html.light-mode body::before{display:none;}
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--nav-bg); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--card-border); padding: 0.7rem 1.5rem;
-    }
-    .nav-inner { max-width: 1000px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .nav-brand { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
-    .btn-theme { background: var(--card); border: 1px solid var(--card-border); color: var(--text); padding: 0.28rem 0.7rem; border-radius: 6px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; }
-    .btn-theme:hover { border-color: var(--accent); color: var(--accent); }
-    main { padding-top: 68px; padding-bottom: 60px; position: relative; z-index: 1; }
-    .container { max-width: 880px; margin: auto; padding: 0 1.2rem; }
-    .hero { text-align: center; padding: 3rem 1rem 1.5rem; }
-    .hero h2 { font-size: clamp(1.7rem, 4.5vw, 2.8rem); color: var(--accent); margin-bottom: 0.75rem; line-height: 1.2; }
-    .hero p { color: var(--text-muted); max-width: 520px; margin: 0 auto 1.5rem; font-size: 0.97rem; line-height: 1.7; }
-    .btn-primary { display: inline-block; background: var(--accent); color: #111; padding: 0.65rem 1.7rem; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.93rem; transition: all 0.2s; font-family: 'Lato', sans-serif; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,200,66,0.28); }
-    .datetime-bar { text-align: center; color: var(--text-muted); font-size: 0.82rem; margin-bottom: 0.75rem; }
-    .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.6rem; backdrop-filter: blur(10px); margin-bottom: 1.25rem; transition: background 0.3s, border 0.3s; }
-    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.6rem; padding-bottom: 0.35rem; border-bottom: 1px solid var(--card-border); }
-    .card-title { font-size: 1.05rem; color: var(--accent); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
-    .verse-text { font-size: 1.12rem; font-style: italic; color: var(--text); line-height: 1.75; margin-bottom: 0.5rem; }
-    .verse-ref { color: var(--accent); font-size: 0.88rem; margin-bottom: 1rem; }
-    .btn-copy { background: var(--card); border: 1px solid var(--card-border); color: var(--text); padding: 0.38rem 0.9rem; border-radius: 6px; cursor: pointer; font-size: 0.83rem; transition: all 0.2s; }
-    .btn-copy:hover { border-color: var(--accent); color: var(--accent); }
-    .sched-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
-    .sched-table th { background: rgba(124,106,247,0.12); color: var(--accent); font-size: 0.78rem; padding: 0.55rem 0.7rem; text-align: left; font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
-    .sched-table td { padding: 0.6rem 0.7rem; font-size: 0.88rem; border-bottom: 1px solid var(--card-border); color: var(--text); }
-    .sched-table tr:last-child td { border-bottom: none; }
-    .role-badge { display: inline-block; padding: 0.12rem 0.45rem; border-radius: 4px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; }
-    .badge-gold { background: rgba(245,200,66,0.12); color: var(--accent); border: 1px solid rgba(245,200,66,0.25); }
-    .badge-purple { background: rgba(124,106,247,0.12); color: #a78bfa; border: 1px solid rgba(124,106,247,0.25); }
-    .badge-green { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
-    .btn { padding: 0.48rem 1.1rem; border-radius: 8px; font-size: 0.86rem; cursor: pointer; font-weight: 600; transition: all 0.2s; border: none; font-family: 'Lato', sans-serif; }
-    .btn-gold { background: var(--accent); color: #111; }
-    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(245,200,66,0.28); }
-    .btn-green { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.28); }
-    .btn-green:hover { background: rgba(52,211,153,0.22); }
-    .btn-red { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.28); }
-    .btn-red:hover { background: rgba(248,113,113,0.22); }
-    .btn-outline { background: transparent; color: var(--text-muted); border: 1px solid var(--card-border); }
-    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); }
-    .btn-purple { background: rgba(124,106,247,0.12); color: #a78bfa; border: 1px solid rgba(124,106,247,0.28); }
-    .btn-purple:hover { background: rgba(124,106,247,0.22); }
-    input, textarea, select { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: var(--text); padding: 0.55rem 0.8rem; border-radius: 8px; font-size: 0.88rem; width: 100%; transition: border 0.2s; font-family: 'Lato', sans-serif; }
-    html.light-mode input, html.light-mode textarea { background: rgba(255,255,255,0.9); }
-    input:focus, textarea:focus { outline: none; border-color: var(--accent2); }
-    input::placeholder, textarea::placeholder { color: var(--text-muted); }
-    label { font-size: 0.79rem; color: var(--text-muted); display: block; margin-bottom: 0.28rem; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin-bottom: 0.9rem; }
-    @media(max-width:580px){ .form-grid { grid-template-columns: 1fr; } }
-    .admin-box { border-radius: 10px; padding: 1.25rem; }
-    .admin-locked { border: 1px solid rgba(245,200,66,0.15); background: rgba(245,200,66,0.02); }
-    .admin-open { border: 1px solid rgba(52,211,153,0.18); background: rgba(52,211,153,0.02); }
-    .login-error { color: var(--red); font-size: 0.8rem; margin-top: 0.4rem; }
-    .prayer-table { width: 100%; border-collapse: collapse; }
-    .prayer-table th { color: var(--accent); font-size: 0.77rem; padding: 0.45rem 0.7rem; text-align: left; border-bottom: 1px solid var(--card-border); font-family: 'Cinzel', serif; }
-    .prayer-table td { padding: 0.55rem 0.7rem; font-size: 0.86rem; color: var(--text); border-bottom: 1px solid var(--card-border); }
-    .prayer-table tr:last-child td { border-bottom: none; }
-    .songs-list { display: flex; flex-direction: column; gap: 0.5rem; }
-    .song-item { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.9rem; border-radius: 10px; border: 1px solid var(--card-border); cursor: pointer; transition: all 0.18s; background: var(--card); }
-    .song-item:hover { transform: translateX(4px); }
-    .song-praise { border-left: 3px solid var(--accent); }
-    .song-worship { border-left: 3px solid var(--accent2); }
-    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.78); z-index: 200; display: none; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
-    .modal.flex { display: flex; }
-    .modal-box { background: var(--bg2); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.75rem; max-width: 540px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; }
-    .modal-close { position: absolute; top: 0.9rem; right: 0.9rem; background: var(--card); border: 1px solid var(--card-border); color: var(--text); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; line-height: 1; }
-    .modal-lyrics { white-space: pre-line; color: var(--text); line-height: 1.85; font-size: 0.93rem; background: var(--card); border-radius: 10px; padding: 1.1rem; border: 1px solid var(--card-border); margin-top: 0.7rem; }
-    .dev-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.1rem; margin-bottom: 0.7rem; }
-    #toast { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 300; padding: 0.7rem 1.2rem; border-radius: 10px; font-size: 0.86rem; font-weight: 600; opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; }
-    .fade-in { animation: fadeIn 0.65s ease both; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 10px; }
-    .hidden { display: none !important; }
-    .flex { display: flex; }
-    .songs-header { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
-    .songs-filter-btn { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.78rem; cursor: pointer; border: 1px solid var(--card-border); background: transparent; color: var(--text-muted); transition: all 0.18s; font-family: 'Lato', sans-serif; }
-    .songs-filter-btn.active { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 700; }
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--card-border);padding:.7rem 1.5rem;}
+    .nav-inner{max-width:1000px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .nav-brand{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:var(--accent);}
+    .nav-right{display:flex;align-items:center;gap:.75rem;}
+    .nav-time{font-size:.72rem;color:var(--text-muted);}
+    .btn-theme{background:var(--card);border:1px solid var(--card-border);color:var(--text);padding:.28rem .7rem;border-radius:6px;font-size:.78rem;cursor:pointer;transition:all .2s;}
+    .btn-theme:hover{border-color:var(--accent);color:var(--accent);}
+
+    /* HAMBURGER */
+    .menu-btn{background:none;border:none;cursor:pointer;padding:.3rem;color:var(--text);display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;}
+    .menu-btn span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .25s;}
+
+    /* MOBILE MENU OVERLAY */
+    .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px);}
+    .menu-overlay.active{opacity:1;pointer-events:all;}
+
+    /* SLIDE-IN MENU */
+    .mobile-menu{position:fixed;top:0;right:-280px;width:270px;height:100vh;z-index:200;background:var(--bg2);border-left:1px solid var(--card-border);transition:right .28s ease;padding:1.5rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;}
+    .mobile-menu.open{right:0;}
+    .mobile-menu-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--card-border);}
+    .mobile-menu-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--accent);}
+    .close-btn{background:none;border:1px solid var(--card-border);color:var(--text);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;}
+    .mobile-nav-link{display:flex;align-items:center;gap:.75rem;padding:.7rem .9rem;border-radius:10px;color:var(--text);text-decoration:none;font-size:.92rem;transition:all .18s;}
+    .mobile-nav-link:hover{background:rgba(245,200,66,.08);color:var(--accent);}
+    .mobile-nav-link .icon{width:20px;text-align:center;}
+    .menu-divider{border:none;border-top:1px solid var(--card-border);margin:.4rem 0;}
+    .menu-theme-btn{display:flex;align-items:center;gap:.75rem;padding:.7rem .9rem;border-radius:10px;color:var(--text-muted);font-size:.88rem;background:none;border:none;cursor:pointer;width:100%;text-align:left;font-family:'Lato',sans-serif;transition:all .18s;}
+    .menu-theme-btn:hover{background:rgba(124,106,247,.08);color:var(--accent2);}
+
+    /* MAIN */
+    main{padding-top:68px;padding-bottom:60px;position:relative;z-index:1;}
+    .container{max-width:880px;margin:auto;padding:0 1.2rem;}
+    .hero{text-align:center;padding:3rem 1rem 1.5rem;}
+    .hero h2{font-size:clamp(1.7rem,4.5vw,2.8rem);color:var(--accent);margin-bottom:.75rem;line-height:1.2;}
+    .hero p{color:var(--text-muted);max-width:520px;margin:0 auto 1.5rem;font-size:.97rem;line-height:1.7;}
+    .btn-primary{display:inline-block;background:var(--accent);color:#111;padding:.65rem 1.7rem;border-radius:8px;font-weight:700;text-decoration:none;font-size:.93rem;transition:all .2s;font-family:'Lato',sans-serif;}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,200,66,.28);}
+    .datetime-bar{text-align:center;color:var(--text-muted);font-size:.82rem;margin-bottom:.75rem;}
+    .card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:1.6rem;backdrop-filter:blur(10px);margin-bottom:1.25rem;transition:background .3s,border .3s;}
+    .section-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:.6rem;padding-bottom:.35rem;border-bottom:1px solid var(--card-border);}
+    .card-title{font-size:1.05rem;color:var(--accent);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
+    .verse-text{font-size:1.12rem;font-style:italic;color:var(--text);line-height:1.75;margin-bottom:.5rem;}
+    .verse-ref{color:var(--accent);font-size:.88rem;margin-bottom:1rem;}
+    .btn-copy{background:var(--card);border:1px solid var(--card-border);color:var(--text);padding:.38rem .9rem;border-radius:6px;cursor:pointer;font-size:.83rem;transition:all .2s;}
+    .btn-copy:hover{border-color:var(--accent);color:var(--accent);}
+    .sched-table{width:100%;border-collapse:collapse;margin-bottom:1rem;}
+    .sched-table th{background:rgba(124,106,247,.12);color:var(--accent);font-size:.78rem;padding:.55rem .7rem;text-align:left;font-family:'Cinzel',serif;letter-spacing:.05em;}
+    .sched-table td{padding:.6rem .7rem;font-size:.88rem;border-bottom:1px solid var(--card-border);color:var(--text);}
+    .sched-table tr:last-child td{border-bottom:none;}
+    .role-badge{display:inline-block;padding:.12rem .45rem;border-radius:4px;font-size:.72rem;font-weight:700;white-space:nowrap;}
+    .badge-gold{background:rgba(245,200,66,.12);color:var(--accent);border:1px solid rgba(245,200,66,.25);}
+    .badge-purple{background:rgba(124,106,247,.12);color:#a78bfa;border:1px solid rgba(124,106,247,.25);}
+    .badge-green{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.25);}
+    .btn{padding:.48rem 1.1rem;border-radius:8px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s;border:none;font-family:'Lato',sans-serif;}
+    .btn-gold{background:var(--accent);color:#111;}
+    .btn-gold:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(245,200,66,.28);}
+    .btn-green{background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.28);}
+    .btn-green:hover{background:rgba(52,211,153,.22);}
+    .btn-red{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.28);}
+    .btn-red:hover{background:rgba(248,113,113,.22);}
+    .btn-outline{background:transparent;color:var(--text-muted);border:1px solid var(--card-border);}
+    .btn-outline:hover{border-color:var(--accent2);color:var(--accent2);}
+    .btn-purple{background:rgba(124,106,247,.12);color:#a78bfa;border:1px solid rgba(124,106,247,.28);}
+    .btn-purple:hover{background:rgba(124,106,247,.22);}
+    input,textarea{background:rgba(255,255,255,.05);border:1px solid var(--card-border);color:var(--text);padding:.55rem .8rem;border-radius:8px;font-size:.88rem;width:100%;transition:border .2s;font-family:'Lato',sans-serif;}
+    html.light-mode input,html.light-mode textarea{background:rgba(255,255,255,.9);}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent2);}
+    input::placeholder,textarea::placeholder{color:var(--text-muted);}
+    label{font-size:.79rem;color:var(--text-muted);display:block;margin-bottom:.28rem;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.9rem;}
+    @media(max-width:580px){.form-grid{grid-template-columns:1fr;}}
+    .admin-box{border-radius:10px;padding:1.25rem;}
+    .admin-locked{border:1px solid rgba(245,200,66,.15);background:rgba(245,200,66,.02);}
+    .admin-open{border:1px solid rgba(52,211,153,.18);background:rgba(52,211,153,.02);}
+    .login-error{color:var(--red);font-size:.8rem;margin-top:.4rem;}
+    .prayer-table{width:100%;border-collapse:collapse;}
+    .prayer-table th{color:var(--accent);font-size:.77rem;padding:.45rem .7rem;text-align:left;border-bottom:1px solid var(--card-border);font-family:'Cinzel',serif;}
+    .prayer-table td{padding:.55rem .7rem;font-size:.86rem;color:var(--text);border-bottom:1px solid var(--card-border);}
+    .prayer-table tr:last-child td{border-bottom:none;}
+    .songs-list{display:flex;flex-direction:column;gap:.5rem;}
+    .song-item{display:flex;align-items:center;gap:.7rem;padding:.7rem .9rem;border-radius:10px;border:1px solid var(--card-border);cursor:pointer;transition:all .18s;background:var(--card);}
+    .song-item:hover{transform:translateX(4px);}
+    .song-praise{border-left:3px solid var(--accent);}
+    .song-worship{border-left:3px solid var(--accent2);}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
+    .modal.flex{display:flex;}
+    .modal-box{background:var(--bg2);border:1px solid var(--card-border);border-radius:16px;padding:1.75rem;max-width:540px;width:100%;max-height:85vh;overflow-y:auto;position:relative;}
+    .modal-close{position:absolute;top:.9rem;right:.9rem;background:var(--card);border:1px solid var(--card-border);color:var(--text);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;line-height:1;}
+    .modal-lyrics{white-space:pre-line;color:var(--text);line-height:1.85;font-size:.93rem;background:var(--card);border-radius:10px;padding:1.1rem;border:1px solid var(--card-border);margin-top:.7rem;}
+    .dev-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:1.1rem;margin-bottom:.7rem;}
+    #toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:400;padding:.7rem 1.2rem;border-radius:10px;font-size:.86rem;font-weight:600;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;}
+    .fade-in{animation:fadeIn .65s ease both;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--card-border);border-radius:10px;}
+    .hidden{display:none!important;}.flex{display:flex;}
+    .songs-header{display:flex;gap:.5rem;margin-bottom:.75rem;flex-wrap:wrap;}
+    .songs-filter-btn{padding:.25rem .7rem;border-radius:20px;font-size:.78rem;cursor:pointer;border:1px solid var(--card-border);background:transparent;color:var(--text-muted);transition:all .18s;font-family:'Lato',sans-serif;}
+    .songs-filter-btn.active{background:var(--accent);color:#111;border-color:var(--accent);font-weight:700;}
+    .sync-note{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.18);border-radius:10px;padding:.75rem 1rem;font-size:.8rem;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
   </style>
 </head>
 <body>
 
+  <!-- OVERLAY -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- SLIDE-IN MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-title">✝ Menu</span>
+      <button class="close-btn" onclick="closeMenu()">✕</button>
+    </div>
+    <a href="#home" class="mobile-nav-link"><span class="icon">🏠</span> Home</a>
+    <a href="#verse" class="mobile-nav-link"><span class="icon">📖</span> Daily Verse</a>
+    <a href="#schedule" class="mobile-nav-link"><span class="icon">📅</span> Schedule</a>
+    <a href="#songs" class="mobile-nav-link"><span class="icon">🎵</span> Songs</a>
+    <a href="#devotionals" class="mobile-nav-link"><span class="icon">✍️</span> Devotionals</a>
+    <a href="daily.html" class="mobile-nav-link"><span class="icon">🌅</span> Daily Devotion</a>
+    <hr class="menu-divider">
+    <button class="menu-theme-btn" id="themeToggleMobile"><span class="icon">🌙</span> <span id="themeToggleMobile">Switch Theme</span></button>
+  </div>
+
+  <!-- NAV -->
   <nav>
     <div class="nav-inner">
-      <div style="display:flex;align-items:center;gap:0.9rem;">
+      <div style="display:flex;align-items:center;gap:.9rem;">
         <span class="nav-brand">✝ Devotional</span>
-        <span style="font-size:0.73rem;color:var(--text-muted);" id="datetimeSmall"></span>
+        <span class="nav-time" id="datetimeSmall"></span>
       </div>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#verse">Verse</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#songs">Songs</a>
-        <a href="#devotionals">Notes</a>
+      <div class="nav-right">
         <button class="btn-theme" id="themeToggle">🌙 Dark</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
 
   <main>
 
+    <!-- HERO -->
     <section id="home" class="container">
       <div class="hero fade-in">
         <h2>Welcome to Our Devotion 🙏</h2>
@@ -172,10 +172,10 @@
       <div class="datetime-bar" id="datetimeLarge"></div>
     </section>
 
-    <!-- DAILY VERSE -->
+    <!-- VERSE -->
     <section id="verse" class="container fade-in">
       <div class="card">
-        <div class="section-label">Auto-refreshes daily</div>
+        <div class="section-label">Auto-refreshes daily · Same verse on all devices</div>
         <h3 class="card-title">📖 Daily Verse</h3>
         <p id="verseText" class="verse-text"></p>
         <p id="verseRef" class="verse-ref"></p>
@@ -188,7 +188,7 @@
       <div class="card">
         <div class="section-label">Saturday Prayer Meeting · 8:00 PM – 10:00 PM</div>
         <h3 class="card-title">📅 Service Roles</h3>
-
+        <div class="sync-note">🔄 Schedule syncs across all devices when admin generates it</div>
         <table class="sched-table">
           <thead><tr><th>Role</th><th>Assigned Person</th></tr></thead>
           <tbody>
@@ -200,15 +200,13 @@
             <tr><td><span class="role-badge badge-gold">Closing Prayer</span></td><td id="schedClosing" style="font-weight:600;">—</td></tr>
           </tbody>
         </table>
-
         <div style="margin-bottom:1.25rem;">
-          <h4 class="card-title" style="font-size:0.88rem;margin-bottom:0.6rem;">🙏 Prayer Assignments</h4>
+          <h4 class="card-title" style="font-size:.88rem;margin-bottom:.6rem;">🙏 Prayer Assignments</h4>
           <table class="prayer-table">
             <thead><tr><th>Person</th><th>Prayer Item</th></tr></thead>
-            <tbody id="prayerBody"><tr><td colspan="2" style="color:var(--text-muted);font-style:italic;padding:0.6rem 0.7rem;font-size:0.83rem;">No schedule generated yet.</td></tr></tbody>
+            <tbody id="prayerBody"><tr><td colspan="2" style="color:var(--text-muted);font-style:italic;padding:.6rem .7rem;font-size:.83rem;">No schedule generated yet.</td></tr></tbody>
           </table>
         </div>
-
         <button id="downloadPdfBtn" class="btn btn-green">📄 Download Schedule + Songs PDF</button>
       </div>
 
@@ -216,30 +214,26 @@
       <div class="card">
         <div class="section-label">Restricted — Admin Only</div>
         <h3 class="card-title">🔐 Admin Panel</h3>
-
         <div id="adminLoginForm" class="admin-box admin-locked">
-          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1rem;">Sign in to generate schedules and manage manual assignments.</p>
-          <div style="display:flex;flex-direction:column;gap:0.65rem;max-width:360px;">
+          <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:1rem;">Sign in to generate schedules and manage assignments. Changes sync to all devices.</p>
+          <div style="display:flex;flex-direction:column;gap:.65rem;max-width:360px;">
             <div><label>Email</label><input type="email" id="adminEmail" placeholder="admin@devotional.app" /></div>
             <div><label>Password</label><input type="password" id="adminPassword" placeholder="••••••••" /></div>
             <p id="loginError" class="login-error hidden">Invalid email or password.</p>
             <button id="adminLoginBtn" class="btn btn-gold" style="align-self:flex-start;">Sign In 🔓</button>
           </div>
         </div>
-
         <div id="adminPanel" class="admin-box admin-open hidden">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.5rem;">
-            <span style="color:var(--green);font-size:0.85rem;font-weight:700;">✅ Admin Logged In</span>
-            <button id="adminLogoutBtn" class="btn btn-outline" style="font-size:0.78rem;padding:0.28rem 0.7rem;">Sign Out</button>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem;">
+            <span style="color:var(--green);font-size:.85rem;font-weight:700;">✅ Admin Logged In — Changes sync to all devices</span>
+            <button id="adminLogoutBtn" class="btn btn-outline" style="font-size:.78rem;padding:.28rem .7rem;">Sign Out</button>
           </div>
-
           <div style="margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--card-border);">
-            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem;">Automatically assigns all roles for this Saturday. Will not repeat last week's assignments for each role.</p>
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.75rem;">Assigns all roles for this Saturday. Won't repeat last week's assignments for each role.</p>
             <button id="generateScheduleBtn" class="btn btn-gold">🔄 Generate This Week's Schedule</button>
           </div>
-
           <div>
-            <div class="section-label" style="margin-bottom:0.75rem;">Manual Assignment</div>
+            <div class="section-label" style="margin-bottom:.75rem;">Manual Assignment</div>
             <form id="assignForm">
               <div class="form-grid">
                 <div><label>Date</label><input id="assignDate" type="date" required /></div>
@@ -249,11 +243,10 @@
               </div>
               <button type="submit" class="btn btn-purple">💾 Save Assignment</button>
             </form>
-
             <div style="overflow-x:auto;margin-top:1rem;">
               <table class="sched-table">
                 <thead><tr><th>Date</th><th>Preacher</th><th>Coordinator</th><th>Reader</th><th></th></tr></thead>
-                <tbody id="assignTable"><tr><td colspan="5" style="color:var(--text-muted);font-style:italic;font-size:0.82rem;padding:0.6rem 0.7rem;">No manual assignments yet.</td></tr></tbody>
+                <tbody id="assignTable"></tbody>
               </table>
             </div>
           </div>
@@ -264,9 +257,9 @@
     <!-- SONGS -->
     <section id="songs" class="container fade-in">
       <div class="card">
-        <div class="section-label">Changes every Sunday · Swahili &amp; English</div>
+        <div class="section-label">Popular 2024/2025 Songs · Changes every Sunday · Swahili &amp; English</div>
         <h3 class="card-title">🎵 This Week's Songs</h3>
-        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.9rem;">Tap any song to view full lyrics</p>
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:.9rem;">Tap any song to view full lyrics</p>
         <div class="songs-header">
           <button class="songs-filter-btn active" onclick="filterSongs('all',this)">All Songs</button>
           <button class="songs-filter-btn" onclick="filterSongs('praise',this)">🎵 Praise</button>
@@ -281,25 +274,23 @@
       <div class="card">
         <div class="section-label">Personal Notes &amp; Messages</div>
         <h3 class="card-title">✍️ Devotionals</h3>
-
         <form id="devForm" style="margin-bottom:1.2rem;">
-          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <div style="display:flex;flex-direction:column;gap:.6rem;">
             <div><label>Title</label><input id="devTitle" placeholder="e.g. Walking in Faith" required /></div>
             <div><label>Message</label><textarea id="devBody" placeholder="Write your devotional message here..." rows="4" required></textarea></div>
-            <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
               <button type="submit" class="btn btn-gold">✚ Add Devotional</button>
               <button id="clearDevBtn" type="button" class="btn btn-red">🗑 Clear All</button>
             </div>
           </div>
         </form>
-
         <div id="devList"></div>
       </div>
     </section>
 
   </main>
 
-  <footer style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.78rem;border-top:1px solid var(--card-border);position:relative;z-index:1;">
+  <footer style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.78rem;border-top:1px solid var(--card-border);position:relative;z-index:1;">
     © 2025 Devotional App — Created by Samuel
   </footer>
 
@@ -307,26 +298,15 @@
   <div id="songModal" class="modal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeSongModal()">✕</button>
-      <div id="modalSongType" style="font-size:0.78rem;padding:0.2rem 0.65rem;border-radius:20px;display:inline-block;margin-bottom:0.75rem;"></div>
-      <h3 id="modalSongTitle" style="font-size:1.25rem;color:var(--accent);margin-bottom:0.3rem;"></h3>
-      <p id="modalSongArtist" style="color:var(--text-muted);font-size:0.82rem;margin-bottom:0.25rem;"></p>
+      <div id="modalSongType" style="font-size:.78rem;padding:.2rem .65rem;border-radius:20px;display:inline-block;margin-bottom:.75rem;"></div>
+      <h3 id="modalSongTitle" style="font-size:1.25rem;color:var(--accent);margin-bottom:.3rem;"></h3>
+      <p id="modalSongArtist" style="color:var(--text-muted);font-size:.82rem;margin-bottom:.25rem;"></p>
       <div id="modalSongLyrics" class="modal-lyrics"></div>
     </div>
   </div>
 
-  <!-- TOAST -->
   <div id="toast"></div>
 
-  <script>
-    // Filter songs helper (must be global for onclick)
-    window.filterSongs = function(type, btn) {
-      document.querySelectorAll('.songs-filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.song-item').forEach(el => {
-        el.style.display = (type === 'all' || el.dataset.type === type) ? '' : 'none';
-      });
-    };
-  </script>
   <script type="module" src="./src/script.js"></script>
 </body>
 </html>
